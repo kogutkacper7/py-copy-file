@@ -1,10 +1,10 @@
 def copy_file(command: str) -> None:
-    split_command = command.split(" ")
-    if len(split_command) == 3 and split_command[0] == "cp":
-        if not split_command[2] == split_command[1]:
+    parts = command.split()
+    if len(parts) == 3 and parts[0] == "cp":
+        if not parts[2] == parts[1]:
             try:
-                with (open(split_command[1])
-                      as src, open(split_command[2], "w") as dst):
-                    dst.write(src.read())
+                with (open(parts[1])
+                      as source_file, open(parts[2], "w") as destination_file):
+                    destination_file.write(source_file.read())
             except FileNotFoundError:
                 return
